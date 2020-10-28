@@ -1,13 +1,16 @@
 * {
   box-sizing: border-box;
   justify-content: center;
+
   text-align: center;
+  font-family: "DM Mono", monospace;
 }
 
 body {
   font-size: 18px;
   line-height: 34px;
   font-family: "DM Mono", monospace;
+  text-transform: uppercase;
   color: #777;
   background-image: url("file:///Users/madelinemoritz/Desktop/gitgo/main%20/assets/fresh_snow.png");
 }
@@ -30,10 +33,10 @@ p:last-child {
   margin-bottom: 0;
 }
 
-h1 {
-  font-family: Georgia, Times, "Times New Roman", serif;
+h1,
+a {
   font-weight: 700;
-  color: #000;
+  color: #131212;
 }
 
 h1 {
@@ -46,7 +49,6 @@ h1 {
 h2,
 h3 {
   font-size: 22px;
-  font-family: Georgia, Times, "Times New Roman", serif;
   font-weight: 700;
   color: #000;
 }
@@ -55,10 +57,9 @@ h3 {
 
 #masterhead {
   background: #fff;
-  border: rgb(86, 62, 244) 1px solid;
+  border: rgb(62, 224, 245) 1px solid;
   margin: 0 0 30px;
   z-index: 99;
-  color: #fff;
   overflow: auto;
   border-bottom: 2px solid #ccc;
   position: fixed;
@@ -68,9 +69,8 @@ h3 {
 #logo {
   width: 250px;
   height: 90px;
-  background: rgb(86, 62, 244);
+  background-color: rgba(62, 224, 245, 0.856);
   float: left;
-  font-family: "Georgia", "Times New Roman", Times, serif;
   text-align: center;
   line-height: 90px;
   color: #fff;
@@ -86,7 +86,7 @@ nav {
 
 nav a {
   color: #999;
-  text-decoration: none;
+  text-decoration: underline;
   margin-left: 15px;
   display: inline-block;
   border-left: 1px solid #efefef;
@@ -108,7 +108,7 @@ nav a:first-child {
   padding: 20px;
   margin: 10px 10px 20px 10px;
   width: 100%;
-  max-width: 700px;
+  max-width: 650px;
   float: left;
   border: 1px solid #ddd;
 }
@@ -122,7 +122,7 @@ nav a:first-child {
 }
 
 .sidebar {
-  background-color: rgba(86, 62, 244, 0.336);
+  background-color: rgba(62, 224, 245, 0.856);
   padding: 30px;
   width: 100%;
   max-width: 200px;
@@ -151,18 +151,18 @@ h2 {
 }
 
 footer {
-  background: #666;
   color: #fff;
   padding: 30px 0;
   clear: both;
-  background-color: rgba(86, 62, 244, 0.336);
-  color: #ccc;
+  background-color: rgba(62, 224, 245, 0.856);
+  color: rgb(31, 29, 29);
   font-size: 12px;
   text-align: center;
 }
 
 .work {
-  width: 230px;
+  width: 250px;
+  background-color: rgba(62, 224, 245, 0.856);
   overflow: auto;
   position: relative;
   float: left;
@@ -176,13 +176,14 @@ footer {
 .work img {
   width: 100%;
   height: 230px;
-  border: 0 none;
+
+  border: 5px;
 }
 
 .work h3 {
   border-bottom: 0;
-  background-color: rgb(86, 62, 244);
-  color: #fff;
+  background-color: rgba(62, 224, 245, 0.856);
+  color: #000000;
   text-align: center;
   text-transform: uppercase;
   position: absolute;
@@ -224,7 +225,7 @@ textarea {
 }
 
 input[type="submit"] {
-  background: indigo;
+  background-color: rgba(62, 224, 245, 0.856);
   border: 0 none;
   color: #fff;
   font-size: 18px;
