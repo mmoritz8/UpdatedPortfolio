@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script type="text/javascript" src="https://api.stackexchange.com/js/2.0/all.js"></script>
+  <title>Stack Overflow dashboard</title>
+  <style>
+    body {
+      position: relative;
+      font: 14px Helvetica, sans-serif;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    #hidden {
+      visibility: hidden;
+    }
+
+    img {
+      border: none;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    h3 {
+      font-size: 14px;
+    }
+
+    h4 {
+      font-size: 12px;
+    }
+
+    blockquote {
+      font-style: italic;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      border-top: 1px solid #000;
+      padding-top: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    input[type="date"] {
+      width: 100px;
+    }
+
+    input[type="submit"] {
+      width: 200px;
+    }
+
+    th {
+      text-align: left;
+      width: 100px;
+      padding: 5px 20px 5px 0;
+    }
+
+    td {
+      text-align: left;
+      vertical-align: top;
+      padding: 5px;
+    }
+
+    #container {
+      overflow: hidden;
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    #main {
+      overflow: hidden;
+      padding: 1rem 1rem 6rem 1rem;
+    }
+
+    .app-information {
+      margin-bottom: 30px;
+    }
+
+    #main h2 {
+      margin: 0 0 1rem;
+    }
+
+    #main img {
+      max-width: 100%;
+    }
+
+    #error {
+      color: #f00;
+    }
+
+    #results {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    #results section {
+      float: left;
+      width: 340px;
+      border-top: 1px solid #000;
+      margin: 20px 0;
+      padding: 20px 0;
+    }
+
+    #results section:nth-child(odd) {
+      clear: both;
+      margin-right: 80px;
+    }
+
+    #top-answerers li,
+    #unanswered li,
+    #top-askers li,
+    #faq li,
+    #related-tags li {
+      margin-bottom: 5px;
+    }
+
+    #top-answerers img,
+    #top-askers img {
+      width: 32px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="container">
+    <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+
+          <a class="navbar-item" href="#">
+            <h1>CODE#</h1>
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Navigate
+              </a>
+
+              <div class="navbar-dropdown">
+                <a href="./create.html" class="navbar-item" href="./create.html">
+                  Create Post
+                </a>
+                <a href="./feed.html" class="navbar-item" href="./feed.html">
+                  Feed
+                </a>
+                <a href="profile.html" class="navbar-item">
+                  Profiles
+                </a>
+                <a href="./tag.html" class="navbar-item">
+                  Search by Tag
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </section>
+
+  <div id="main">
+    <section class="section">
+      <p>
+        <a href="feed.html">Back Home</a>.<br />
+        Remaining requests for you today:
+        <span id="remaining-requests"></span>
+      </p>
+      <p id="error"></p>
+    </section>
+    <div>
+      <form id="selection-form">
+        <label for="stack-overflow-tag">Tag:</label>
+        <input id="stack-overflow-tag" list="popular-tags" />
+        <datalist id="popular-tags">
+          <!-- <option> Here add the `template literal` (sp?) for the input of our tag. </option> -->
+          <option value="Java"> </option>
+          <option value="JavaScript"> </option>
+          <option value="HTML"> </option>
+        </datalist>
+
+        <label for="start-date">Dates</label>
+        <input type="date" id="start-date" value="2014-04-01" />
+        <input type="date" id="end-date" value="2014-05-01" />
+
+        <label for="time-period">Period</label>
+        <select id="time-period">
+          <option value="month" selected>Month</option>
+          <option value="all_time">All time</option>
+        </select>
+
+        <input type="submit" id="check-reports" value="Check" />
+      </form>
+    </div>
+
+    <div id="results">
+      <section>
+        <h2>Questions (based on dates above)</h2>
+        <table>
+          <tr>
+            <th>With activity</th>
+            <td id="questions-with-activity"></td>
+          </tr>
+          <tr id="hidden">
+            <th>Unanswered *</th>
+            <td style="visibility: hidden" id="unanswered-questions"></td>
+          </tr>
+          <tr>
+            <th>Results</th>
+            <td id="questions-results"></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              * = (must have at least one upvoted answer to be considered
+              answered)
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="hide">
+        <h2>Top answerers (based on time period above)</h2>
+        <div id="top-answerers"></div>
+      </section>
+
+      <section class="hide">
+        <h2>Unanswered questions *</h2>
+        <div id="unanswered"></div>
+      </section>
+
+      <section>
+        <h2>Frequently asked questions</h2>
+        <div id="faq"></div>
+      </section>
+
+      <section>
+        <h2>Related tags</h2>
+        <div id="related-tags"></div>
+      </section>
+
+      <section class="section" id="hidden">
+        <h2>Top askers (based on time period above)</h2>
+        <div id="top-askers"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p class="h3">
+      <strong>* = (must have at least one upvoted answer to be considered
+        answered)</strong>
+    </p>
+  </footer>
+  </div>
+  <script type="text/javascript">
+    SE.init({
+      clientId: 17146,
+      key: '123456',
+      channelUrl: 'http://localhost:8000/main',
+      complete: function (data) {
+        console.log(data);
+      }
+    });
+  </script>
+
+  <script>
+    (function () {
+      var tag = document.querySelector("#stack-overflow-tag"),
+        startDate = document.querySelector("#start-date"),
+        endDate = document.querySelector("#end-date"),
+        timePeriod = document.querySelector("#time-period"),
+        year = new Date().getFullYear(),
+        month = new Date().getMonth() + 1,
+        daysinMonth = 31,
+        questions = {
+          startDate: "2014-05-01",
+          endDate: "2014-05-31",
+          timePeriod: "month",
+          withActivity: {
+            total: 0
+          },
+          unanswered: {
+            total: 0
+          },
+          topAskers: {
+            items: []
+          },
+          faq: {
+            items: []
+          },
+          relatedTags: {
+            items: []
+          }
+        };
+
+      // Setting up the form
+      switch (month) {
+        case 2:
+          daysinMonth = 28;
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          daysinMonth = 30;
+          break;
+        default:
+          daysinMonth = 31;
+      }
+
+      month = month < 10 ? "0" + month : month;
+      startDate.value = year + "-" + month + "-01";
+      endDate.value = year + "-" + month + "-" + daysinMonth;
+
+      document.querySelector("#selection-form").onsubmit = function (evt) {
+        checkReports();
+        evt.preventDefault();
+      };
+
+      function addResults(type) {
+        var questionsWithActivity = questions.withActivity.total,
+          unansweredQuestions = questions.unanswered.total,
+          percentageUnanswered =
+            questionsWithActivity > 0
+              ? parseFloat(
+                (unansweredQuestions / questionsWithActivity) * 100
+              ).toFixed(2)
+              : "100";
+
+        // Popular tags, for filling the <datalist> element
+        if (type === "popularTags") {
+          var popularTagsList = document.querySelector("#popular-tags"),
+            popularTags = questions.popularTags.items,
+            popularTagsResults = "";
+          for (var i = 0, l = popularTags.length, tag; i < l; i++) {
+            tag = popularTags[i];
+            popularTagsResults += '<option value="' + tag.name + '">';
+          }
+          popularTagsList.innerHTML = popularTagsResults;
+        }
+
+        // With activity
+        if (type === "withActivity") {
+          document.querySelector(
+            "#questions-with-activity"
+          ).innerHTML = questionsWithActivity;
+        }
+
+        // With activity or unanswered, to compare results
+        if (type === "withActivity" || type === "unanswered") {
+          document.querySelector("#questions-results").innerHTML =
+            percentageUnanswered + "% unanswered";
+        }
+
+        // Unanswered
+        if (type === "unanswered") {
+          document.querySelector(
+            "#unanswered-questions"
+          ).innerHTML = unansweredQuestions;
+
+          var unanswered = document.querySelector("#unanswered"),
+            allUnanswered = questions.unanswered.items;
+          if (allUnanswered) {
+            var totalUnanswereds =
+              allUnanswered.length > 10 ? 10 : allUnanswered.length,
+              unansweredResults = "<ul>";
+
+            for (var j = 0, jl = totalUnanswereds, question; j < jl; j++) {
+              question = allUnanswered[j];
+              unansweredResults +=
+                "<li>" +
+                '<a href="' +
+                question.link +
+                '">' +
+                question.title +
+                "</a><br>" +
+                "<small>" +
+                question.tags.toString(", ") +
+                "</small></li>";
+            }
+            unansweredResults += "</ul>";
+            unanswered.innerHTML = unansweredResults;
+          }
+        }
+
+        // Top answerers
+        if (type === "topAnswerers") {
+          var topAnswerers = document.querySelector("#top-answerers"),
+            allTopAnswerers = questions.topAnswerers.items;
+          if (allTopAnswerers) {
+            var totalTopAnswerers =
+              allTopAnswerers.length > 5 ? 5 : allTopAnswerers.length,
+              topAnswerersResults = "<ul>";
+
+            for (var k = 0, kl = totalTopAnswerers, answerer; k < kl; k++) {
+              answerer = allTopAnswerers[k];
+              topAnswerersResults +=
+                "<li>" +
+                '<a href="' +
+                answerer.user.link +
+                '">' +
+                '<img src="' +
+                answerer.user.profile_image +
+                '" alt="">' +
+                answerer.user.display_name +
+                "</a>" +
+                ", Score: " +
+                answerer.score +
+                " (" +
+                answerer.post_count +
+                " question" +
+                (answerer.post_count > 1 ? "s" : "") +
+                ")</li>";
+            }
+            topAnswerersResults += "</ul>";
+            topAnswerers.innerHTML = topAnswerersResults;
+          }
+        }
+
+        // Top askers
+        if (type === "topAskers") {
+          var topAskers = document.querySelector("#top-askers"),
+            allTopAskers = questions.topAskers.items;
+          if (allTopAskers) {
+            var totalTopAskers =
+              allTopAskers.length > 5 ? 5 : allTopAskers.length,
+              topAskersResults = "<ul>";
+
+            for (var m = 0, ml = totalTopAskers, asker; m < ml; m++) {
+              asker = allTopAskers[m];
+              topAskersResults +=
+                "<li>" +
+                '<a href="' +
+                asker.user.link +
+                '">' +
+                '<img src="' +
+                asker.user.profile_image +
+                '" alt="">' +
+                asker.user.display_name +
+                "</a>" +
+                ", " +
+                asker.post_count +
+                " question" +
+                (asker.post_count > 1 ? "s" : "") +
+                "</li>";
+            }
+            topAskersResults += "</ul>";
+            topAskers.innerHTML = topAskersResults;
+          }
+        }
+
+        // Frequently asked questions
+        if (type === "faq") {
+          var faq = document.querySelector("#faq"),
+            allFaq = questions.faq.items;
+          if (allFaq) {
+            var totalFaqs = allFaq.length > 10 ? 10 : allFaq.length,
+              faqResults = "<ul>";
+
+            for (var n = 0, nl = totalFaqs, faqQuestion; n < nl; n++) {
+              faqQuestion = allFaq[n];
+              faqResults +=
+                "<li>" +
+                '<a href="' +
+                faqQuestion.link +
+                '">' +
+                faqQuestion.title +
+                "</a><br>" +
+                "<small>" +
+                faqQuestion.tags.toString(", ") +
+                "</small></li>";
+            }
+            faqResults += "</ul>";
+            faq.innerHTML = faqResults;
+          }
+        }
+
+        // Related tags
+        if (type === "relatedTags") {
+          var relatedTags = document.querySelector("#related-tags"),
+            allRelatedTags = questions.relatedTags.items;
+          if (allRelatedTags) {
+            var totalRelatedTags =
+              allRelatedTags.length > 10 ? 10 : allRelatedTags.length,
+              relatedTagsResults = "<ul>";
+
+            for (var o = 0, ol = totalRelatedTags, relatedTag; o < ol; o++) {
+              relatedTag = allRelatedTags[o];
+              relatedTagsResults +=
+                "<li>" +
+                '<a href="https://stackoverflow.com/questions/tagged/' +
+                relatedTag.name +
+                '">' +
+                relatedTag.name +
+                "</a></li>";
+            }
+            relatedTagsResults += "</ul>";
+            relatedTags.innerHTML = relatedTagsResults;
+          }
+        }
+      }
+
+      function showErrors(name, msg) {
+        var error = document.querySelector("#error");
+        error.innerHTML = name + "<br>" + msg;
+      }
+
+      function getItems(type, url) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            //console.log("Type: " + type);
+            //console.log(xhr.response);
+            var response = xhr.response,
+              quotaRemaining = response.quota_remaining;
+
+            if (response.error_message) {
+              showErrors(response.error_name, response.error_message);
+            } else {
+              questions[type] = response;
+              addResults(type);
+            }
+
+            // Remining requests today from your IP
+            if (quotaRemaining) {
+              document.querySelector(
+                "#remaining-requests"
+              ).innerHTML = quotaRemaining;
+            }
+          }
+        };
+
+        xhr.open("GET", url, true);
+        xhr.responseType = "json";
+        xhr.send(null);
+      }
+
+      function getQuestionsWithActivity() {
+        // All questions for a certain time period - http://api.stackexchange.com/docs/search
+        getItems(
+          "withActivity",
+          "https://api.stackexchange.com/2.2/search?fromdate=" +
+          questions.startDate +
+          "&todate=" +
+          questions.endDate +
+          "&order=desc&sort=activity&tagged=" +
+          questions.tag +
+          "&site=stackoverflow&filter=!9WA((MBIa"
+        );
+      }
+
+      function getUnansweredQuestions() {
+        // All questions without an answer for a certain time period - http://api.stackexchange.com/docs/unanswered-questions
+        // "At this time a question must have at least one upvoted answer to be considered answered"
+        getItems(
+          "unanswered",
+          "https://api.stackexchange.com/2.2/questions/unanswered?fromdate=" +
+          questions.startDate +
+          "&todate=" +
+          questions.endDate +
+          "&order=desc&sort=activity&tagged=" +
+          questions.tag +
+          "&site=stackoverflow&filter=!9WA((MBIa"
+        );
+      }
+
+      function topAnswerers() {
+        getItems(
+          "topAnswerers",
+          "https://api.stackexchange.com/2.2/tags/" +
+          questions.tag +
+          "/top-answerers/" +
+          questions.timePeriod +
+          "?site=stackoverflow"
+        );
+      }
+
+      function topAskers() {
+        getItems(
+          "topAskers",
+          "https://api.stackexchange.com/2.2/tags/" +
+          questions.tag +
+          "/top-askers/" +
+          questions.timePeriod +
+          "?site=stackoverflow"
+        );
+      }
+
+      function faq() {
+        getItems(
+          "faq",
+          "https://api.stackexchange.com/2.2/tags/" +
+          questions.tag +
+          "/faq?site=stackoverflow"
+        );
+      }
+
+      function relatedTags() {
+        getItems(
+          "relatedTags",
+          "https://api.stackexchange.com/2.2/tags/" +
+          questions.tag +
+          "/related?site=stackoverflow"
+        );
+      }
+
+      function checkReports() {
+        questions.tag = tag.value;
+        questions.startDate = startDate.value;
+        questions.endDate = endDate.value;
+        questions.timePeriod = timePeriod.value;
+
+        // Get reports
+        getQuestionsWithActivity();
+        getUnansweredQuestions();
+        topAnswerers();
+        topAskers();
+        faq();
+        relatedTags();
+      }
+
+      function getPopularTags() {
+        getItems(
+          "popularTags",
+          "https://api.stackexchange.com/2.2/tags?pagesize=100&order=desc&sort=popular&site=stackoverflow"
+        );
+      }
+
+      // Run automatically at page load to pre-populate the <datalist> element
+      getPopularTags();
+    })();
+  </script>
+</body>
+
+</html>
