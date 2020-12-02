@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   justify-content: center;
-
   text-align: center;
   font-family: "DM Mono", monospace;
 }
@@ -10,7 +9,7 @@ body {
   font-size: 18px;
   line-height: 34px;
   font-family: "DM Mono", monospace;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #925949;
 }
 
@@ -19,6 +18,13 @@ body {
   max-width: 960px;
   margin: 0 auto;
   clear: both;
+}
+canvas#canvas {
+  position: fixed;
+  background: #360033;
+  opacity: 1;
+  background: -webkit-linear-gradient(to bottom, #0b8793, #360033);
+  background: linear-gradient(to bottom, #0b8793, #360033);
 }
 
 h1,
@@ -36,6 +42,8 @@ h1,
 a {
   font-weight: 700;
   color: #512418;
+  text-decoration: underline;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -49,7 +57,7 @@ h2,
 h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #7f7764;
+  color: #3d3728;
 }
 
 /*header*/
@@ -104,6 +112,8 @@ nav a:first-child {
 
 .main-section {
   background-color: #fff;
+  opacity: 0.91;
+  position: relative;
   padding: 30px;
   margin: 0px 0px 40px 0px;
   width: 100%;
@@ -122,6 +132,10 @@ nav a:first-child {
 
 .sidebar {
   background-color: #d88690;
+  opacity: 0.89;
+
+  color: #63584d;
+  position: sticky;
   padding: 30px;
   width: 100%;
   max-width: 270px;

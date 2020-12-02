@@ -17,8 +17,9 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" type="text/css" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script src="./starfield.js"></script>
   </head>
 
   <body>
@@ -32,21 +33,28 @@
         </nav>
       </div>
     </header>
+    <canvas id="canvas">Canvas not supported.</canvas>
 
     <div id="main-container" class="container">
       <section class="main-section">
         <h1>Portfolio</h1>
 
         <div class="work">
-          <img src="./images/trivia.webp" class="auth-image" alt="quiz" />
-          <a href="https://mmoritz8.github.io/Quiz/"
-            >Goofy Q's with Real A's
+          <a href="https://mmoritz8.github.io/Quiz/">
+            <img src="./images/trivia.webp" class="auth-image" alt="quiz" />
+            Goofy Q's with Real A's
           </a>
         </div>
 
         <div class="work">
-          <img src="./images/stack copy.webp" class="auth-image" alt="trivia" />
-          <a href="./main.html">Stack Overflow UpVoted</a>
+          <a href="./main.html">
+            <img
+              src="./images/stack copy.webp"
+              class="auth-image"
+              alt="trivia"
+            />
+            Stack Overflow UpVoted</a
+          >
         </div>
         <div class="work">
           <img src="./images/cry.webp" class="auth-image" alt="trivia" />
@@ -110,24 +118,25 @@
       </section>
 
       <section class="sidebar">
-        <div id="connect">
-          <h2>Connect With Me!</h2>
+        <h2>Connect With Me!</h2>
 
-          <img
-            src="./images/iconfinder_social__media__social_media__linked_in__3350450.webp"
-            class="social"
-            alt="LinkedIn"
-          />
-          <img
-            src="./images/iconfinder_facebook_313485.webp"
-            class="social"
-            alt="Facebook"
-          />
-          <img
-            src="./images/iconfinder_github_394189.webp"
-            class="social"
-            alt="Github"
-          />
+        <p>PHONE: 512-468-2933</p>
+        <p>EMAIL: mmoritz0808@GMAIL.COM</p>
+        <div id="connect">
+          <a href="https://linkedin.com/in/madeline-m-8aaa1062">
+            <img
+              src="./images/iconfinder_social__media__social_media__linked_in__3350450.webp"
+              class="social"
+              alt="LinkedIn"
+          /></a>
+
+          <a href="https://mmoritz8.github.io/UpdatedPortfolio/index.html">
+            <img
+              src="./images/iconfinder_github_394189.webp"
+              class="social"
+              alt="Github"
+            />
+          </a>
         </div>
       </section>
     </div>
