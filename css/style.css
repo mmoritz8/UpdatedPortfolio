@@ -277,7 +277,7 @@ input[type="submit"] {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 968px) {
   .main-section,
   .sidebar {
     max-width: 100%;
