@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
   var tag = document.querySelector("#stack-overflow-tag"),
     startDate = document.querySelector("#start-date"),

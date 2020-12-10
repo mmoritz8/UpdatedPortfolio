@@ -77,12 +77,20 @@ h3 {
 nav {
   float: right;
   opacity: 0.4;
+  text-decoration: none;
+  color: #cdd;
+  font-size: 30px;
+  margin: 10px 20px;
+  text-transform: uppercase;
+  position: relative;
+  background: #eee;
   margin-top: 25px;
 }
 
 nav a {
-  color: #63584d;
+  color: #20150a;
   text-decoration: underline;
+  background: #eee;
   margin-left: 15px;
   display: inline-block;
   border-left: 1px solid #63584d;
@@ -92,6 +100,8 @@ nav a {
 
 nav a:first-child {
   border-left: 0 none;
+  font-size: 1em;
+  justify-content: left;
 }
 
 /*main*/
@@ -246,7 +256,7 @@ input[type="submit"] {
 @media only screen and (max-width: 980px) {
   .container {
     padding: 0 20px;
-    max-width: 768px;
+    max-width: 728px;
   }
 
   #main-container {
@@ -376,7 +386,8 @@ input[type="submit"] {
 }
 
 .stars {
-  background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+  background: black
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -389,7 +400,9 @@ input[type="submit"] {
 .twinkling {
   width: 10000px;
   height: 100%;
-  background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+  background: transparent
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png")
+    repeat;
   background-size: 1000px 1000px;
   position: absolute;
   right: 0;
