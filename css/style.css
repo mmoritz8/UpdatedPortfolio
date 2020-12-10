@@ -256,7 +256,7 @@ input[type="submit"] {
 @media only screen and (max-width: 980px) {
   .container {
     padding: 0 20px;
-    max-width: 728px;
+    max-width: 828px;
   }
 
   #main-container {
