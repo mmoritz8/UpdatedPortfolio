@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="https://api.stackexchange.com/js/2.0/all.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+    <section class="container has-text-centered is-centered">
+        <div id="game">
+            <p>Press r, p, or s to start playing.</p>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        var options = ["r", "p", "s"];
+        var wins = 0;
+        var ties = 0;
+        var losses = 0;
+
+        document.onkeyup = function() {
+            var userguess = String.fromCharCode(event.keyCode).toLowerCase();
+
+            console.log(userguess);
+
+            var computerguess = options[Math.floor(Math.random() * options.length)];
+
+            console.log(computerguess);
+
+            if (userguess == "r" || userguess == "s" || userguess == "p") {
+                if (userguess == computerguess) {
+                    ties++;
+                    alert("Ties " + ties);
+                }
+                if (userguess == "r" && computerguess == "s") {
+                    wins++;
+                    alert("Wins " + wins);
+                }
+                if (userguess == "s" && computerguess == "r") {
+                    losses++;
+                    alert("Losses " + losses);
+                }
+                if (userguess == "p" && computerguess == "r") {
+                    wins++;
+                    alert("Wins " + wins);
+                }
+                if (userguess == "r" && computerguess == "p") {
+                    losses++;
+                    alert("Losses " + losses);
+                }
+                if (userguess == "p" && computerguess == "s") {
+                    losses++;
+                    alert("Losses " + losses);
+                }
+                if (userguess == "s" && computerguess == "p") {
+                    wins++;
+                    alert("Wins " + wins);
+                }
+            } else {
+                alert("Please push p, s, or r");
+            }
+
+            var html =
+                "<section class='container has-text-centered is-centered'><p>Press r, p, or s to start playing</p>" +
+                "<h1>wins: " +
+                wins +
+                "</h1>" +
+                "<h1>losses: " +
+                losses +
+                "</h1>" +
+                "<h1>ties: " +
+                ties +
+                "</h1></section>";
+
+            document.querySelector("#game").innerHTML = html;
+        };
+    </script>
+</body>
+
+</html>

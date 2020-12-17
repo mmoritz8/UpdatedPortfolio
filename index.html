@@ -1,128 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Portfolio (Completed Apps)</title>
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      />
-    </head>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
 
-    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <script src="./js/script.js"></script>
+</head>
 
-    <script src="./script.js"></script>
-  </head>
-
-  <body>
+<body>
     <header id="masterhead">
-      <div class="container">
-        <a href="./index.html" id="logo">Madeline Moritz</a>
-        <nav>
-          <a href="./aboutme.html">About Me</a>
-          <a href="./index.html">Portfolio</a>
-          <a href="./contact 2.html">Contact Me</a>
-        </nav>
-      </div>
+        <div class="container">
+            <a href="./index.html" id="logo">Madeline Moritz</a>
+            <nav>
+                <a href="./public/aboutme.html">About Me</a>
+                <a href="./public/index.html">Portfolio</a>
+                <a href="./public/contact 2.html">Contact Me</a>
+            </nav>
+        </div>
     </header>
     <canvas id="canvas" width="100%" height="100%"></canvas>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
     <div id="main-container" class="container">
-      <section class="main-section">
-        <h1 class="animate__animated animate__bounceInLeft">Portfolio</h1>
+        <section class="main-section">
+            <h1>Portfolio</h1>
+            <div class="work">
+                <a href="https://youtube-playlist-maddie.herokuapp.com/">
+                    <img src="./assets/images/vids.png" class="auth-image" alt="quiz" /> React Youtube Video
+                </a>
+            </div>
+            <div class="work">
+                <img src="./assets/images/Screen Shot 2020-10-28 at 5.38.17 PM.png" class="auth-image" alt="quiz" />
+                <a href="https://mmoritz8.github.io/videoplayer/">Video Player</a>
+            </div>
+            <div class="work">
+                <a href="./public/main.html">
+                    <img src="./assets/images/stack copy.webp" class="auth-image" alt="trivia" /> Stack Overflow UpVoted</a>
+            </div>
 
-        <div class="animate__rubberBand animate__animated work animate__slower">
-          <a href="https://youtube-playlist-maddie.herokuapp.com/">
-            <img src="./images/vids.png" class="auth-image" alt="quiz" />
-            React Youtube Video
-          </a>
-        </div>
-
-        <div class="animate__animated work animate__zoomInDown">
-          <a href="./main.html">
-            <img
-              src="./images/stack copy.webp"
-              class="auth-image"
-              alt="trivia"
-            />
-            Stack Overflow UpVoted</a
-          >
-        </div>
-        <div class="animate__slideInUp animate__animated work animate__slower">
-          <img src="./images/cry.webp" class="auth-image" alt="trivia" />
-          <a href="https://mmoritz8.github.io/Crystal-Collector/"
-            >Crystal Point Game!</a
-          >
-        </div>
-
-        <div class="animate__rubberBand animate__animated work animate__slower">
-          <img src="./images/ny.webp" class="auth-image" alt="trivia" />
-          <a href="https://mmoritz8.github.io/NY-Times-Application/">
+            <div class="work">
+                <img src="./assets/images/Screen Shot 2020-10-28 at 9.17.53 AM.png" class="auth-image" alt="quiz" />
+                <a href="https://mmoritz8.github.io/memorygame/">Memory Game</a>
+            </div>
+            <div class="work">
+                <img src="./assets/images/ny.webp" class="auth-image" alt="trivia" />
+                <a href="https://mmoritz8.github.io/NY-Times-Application/">
             AJAX News
           </a>
+            </div>
+            <div class="work">
+                <img src="./assets/images/cry.webp" class="auth-image" alt="trivia" />
+                <a href="https://mmoritz8.github.io/Crystal-Collector/">Crystal Point Game!</a
+          >
         </div>
         <div class="work">
           <img
-            src="./images/Screen Shot 2020-10-28 at 9.17.53 AM.png"
-            class="auth-image"
-            alt="quiz"
-          />
-          <a href="https://mmoritz8.github.io/memorygame/">Memory Game</a>
-        </div>
-        <div class="work">
-          <img
-            src="./images/1Screen Shot 2020-10-28 at 9.51.03 AM.png"
+            src="./assets/images/1Screen Shot 2020-10-28 at 9.51.03 AM.png"
             class="auth-image"
             alt="quiz"
           />
           <a href="https://mmoritz8.github.io/8Ball/">Magic 8 Ball</a>
-        </div>
-        <div class="work">
-          <img
-            src="./images/Screen Shot 2020-10-28 at 5.47.02 PM.png"
-            class="auth-image"
-            alt="trivia"
-          />
-          <a href="https://mmoritz8.github.io/clock/"> Clock</a>
-        </div>
-        <div class="work">
-          <img
-            src="./images/Screen Shot 2020-10-28 at 5.38.17 PM.png"
-            class="auth-image"
-            alt="quiz"
-          />
-          <a href="https://mmoritz8.github.io/videoplayer/">Video Player</a>
-        </div>
-        <div class="work">
-          <img
-            src="./images/1200px-Rock-paper-scissors.svg.png"
-            class="auth-image"
-            alt="trivia"
-          />
-          <a href="./rock1.html">Rock Paper Scissors </a>
-        </div>
-        <div class="work">
-          <img src="./images/pw.webp" class="auth-image" alt="trivia" />
-          <a href="https://mmoritz8.github.io/Word-Generator/">
+            </div>
+            <div class="work">
+                <img src="./assets/images/Screen Shot 2020-10-28 at 5.47.02 PM.png" class="auth-image" alt="trivia" />
+                <a href="https://mmoritz8.github.io/clock/"> Clock</a>
+            </div>
+
+            <div class="work">
+                <img src="./assets/images/1200px-Rock-paper-scissors.svg.png" class="auth-image" alt="trivia" />
+                <a href="./public/rock1.html">Rock Paper Scissors </a>
+            </div>
+            <div class="work">
+                <img src="./assets/images/pw.webp" class="auth-image" alt="trivia" />
+                <a href="https://mmoritz8.github.io/Word-Generator/">
             Password Generator</a
           >
         </div>
@@ -136,24 +93,21 @@
         <div id="connect">
           <a href="https://linkedin.com/in/madeline-m-8aaa1062">
             <img
-              src="./images/iconfinder_social__media__social_media__linked_in__3350450.webp"
+              src="./assets/images/iconfinder_social__media__social_media__linked_in__3350450.webp"
               class="social"
               alt="LinkedIn"
           /></a>
 
-          <a href="https://mmoritz8.github.io/UpdatedPortfolio/index.html">
-            <img
-              src="./images/iconfinder_github_394189.webp"
-              class="social"
-              alt="Github"
-            />
-          </a>
-        </div>
-      </section>
+                <a href="https://mmoritz8.github.io/UpdatedPortfolio/index.html">
+                    <img src="./assets/images/iconfinder_github_394189.webp" class="social" alt="Github" />
+                </a>
+            </div>
+        </section>
     </div>
 
     <footer>
-      <div class="container">&copy; Copyright 2019 Madeline Moritz</div>
+        <div class="container">&copy; Copyright 2019 Madeline Moritz</div>
     </footer>
-  </body>
+</body>
+
 </html>
